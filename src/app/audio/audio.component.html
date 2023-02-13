@@ -1,0 +1,14 @@
+<p>My Audio</p>
+<mat-selection-list [multiple]="false">
+  <mat-list-option *ngFor="let music of musics" [value]="music">
+    {{ music.name }}
+  </mat-list-option>
+</mat-selection-list>
+<div class="audio-block">
+  <button mat-fab color="accent" (click)="pre()">pre</button>
+  <audio id="myAudio" controls>
+    <source [src]="currentPlay">
+  </audio>
+  <button mat-fab color="accent" (click)="next()">next</button>
+</div>
+
