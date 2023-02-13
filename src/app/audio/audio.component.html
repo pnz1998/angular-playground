@@ -1,14 +1,24 @@
-<p>My Audio</p>
-<mat-selection-list [multiple]="false">
-  <mat-list-option *ngFor="let music of musics" [value]="music">
-    {{ music.name }}
-  </mat-list-option>
-</mat-selection-list>
-<div class="audio-block">
-  <button mat-fab color="accent" (click)="pre()">pre</button>
-  <audio id="myAudio" controls>
-    <source [src]="currentPlay">
-  </audio>
-  <button mat-fab color="accent" (click)="next()">next</button>
+<div class="audio">
+  <mat-selection-list [multiple]="false">
+    <mat-list-option *ngFor="let music of musics" [value]="music">
+      {{ music.name }}
+    </mat-list-option>
+  </mat-selection-list>
+  <div class="play_block">
+    <div class="play_btn">
+      <button mat-icon-button color="primary" (click)="pre()">
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="next()">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="next()">
+        <mat-icon>skip_next</mat-icon>
+      </button>
+      <mat-slider min="1" max="5" step="0.5" value="1.5">
+        <input matSliderThumb>
+      </mat-slider>
+    </div>
+  </div>
 </div>
 
