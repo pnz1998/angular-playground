@@ -13,6 +13,8 @@ export interface Music {
 })
 export class AudioComponent implements OnInit {
   currentPlay: string ='http://music.163.com/song/media/outer/url?id=298317.mp3'
+  audioObj = new Audio(this.currentPlay);
+  
 
   constructor() { }
 
@@ -22,12 +24,16 @@ export class AudioComponent implements OnInit {
     myAudio.addEventListener('pause', event => {
       console.log('load')
     })
-  }
+  };
 
   musics: Music[] = [
     { name: '屋顶', singer: '温岚，周杰伦', url: 'http://music.163.com/song/media/outer/url?id=298317.mp3' },
     { name: '小时候', singer: '南拳妈妈，周杰伦', url: 'http://music.163.com/song/media/outer/url?id=368827.mp3' }
-  ]
+  ];
+
+  play() {
+    console.log(this.audioObj.duration);
+  };
 
   pre() {
     const myAudio = document.getElementById("myAudio");
@@ -36,7 +42,7 @@ export class AudioComponent implements OnInit {
     myAudio.addEventListener('play', event => {
       console.log('play')
     })
-  }
+  };
 
   next() {
     const myAudio = document.getElementById("myAudio");
@@ -45,5 +51,4 @@ export class AudioComponent implements OnInit {
       console.log('load')
     })
   }
-
 }

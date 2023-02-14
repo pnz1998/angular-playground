@@ -9,7 +9,7 @@
       <button mat-icon-button color="primary" (click)="pre()">
         <mat-icon>skip_previous</mat-icon>
       </button>
-      <button mat-icon-button color="primary" (click)="next()">
+      <button mat-icon-button color="primary" (click)="play()">
         <mat-icon>play_arrow</mat-icon>
       </button>
       <button mat-icon-button color="primary" (click)="next()">
@@ -18,6 +18,9 @@
       <mat-slider min="1" max="5" step="0.5" value="1.5">
         <input matSliderThumb>
       </mat-slider>
+      <span class="time">
+        <span></span>/<span></span>
+      </span>
     </div>
   </div>
 </div>
