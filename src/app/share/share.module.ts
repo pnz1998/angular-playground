@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatListModule,
     MatButtonModule,
     MatSliderModule,
-    MatIconModule
+    MatIconModule,
   ]
 })
 export class ShareModule{ }

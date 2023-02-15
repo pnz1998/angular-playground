@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import moment from 'moment';
+import momentDurationFormatSetup from "moment-duration-format";
+import { BehaviorSubject, fromEvent, Observable, Subject } from 'rxjs';
+momentDurationFormatSetup(moment);
 
 export interface Music {
   name: string,
@@ -12,18 +16,15 @@ export interface Music {
   styleUrls: ['./audio.component.css']
 })
 export class AudioComponent implements OnInit {
-  currentPlay: string ='http://music.163.com/song/media/outer/url?id=298317.mp3'
+  currentPlay: string ='';
   audioObj = new Audio(this.currentPlay);
+  musicCurrentTime = '00:00';
+  musicDuration = '00:00';
   
-
   constructor() { }
 
   ngOnInit(): void {
-    const myAudio = document.getElementById("myAudio");
-    if(!myAudio) return 
-    myAudio.addEventListener('pause', event => {
-      console.log('load')
-    })
+    
   };
 
   musics: Music[] = [
@@ -32,23 +33,16 @@ export class AudioComponent implements OnInit {
   ];
 
   play() {
-    console.log(this.audioObj.duration);
+    // this.musicDuration = moment.duration(this.audioObj.duration, "seconds").format("mm:ss");
   };
 
-  pre() {
-    const myAudio = document.getElementById("myAudio");
-    this.currentPlay = 'http://music.163.com/song/media/outer/url?id=298317.mp3';
-    if(!myAudio) return 
-    myAudio.addEventListener('play', event => {
-      console.log('play')
-    })
-  };
+  pre() { };
 
-  next() {
-    const myAudio = document.getElementById("myAudio");
-    if(!myAudio) return 
-    myAudio.addEventListener('load', event => {
-      console.log('load')
-    })
-  }
+  next() { };
+
+  selectionChange(value: Music) {
+    this.currentPlay = value.url;
+    console.log(this.audioObj.duration)
+    this.musicDuration = moment.duration(this.audioObj.duration, "seconds").format("mm:ss");
+  };
 }

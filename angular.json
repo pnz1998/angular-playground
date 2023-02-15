@@ -26,7 +26,11 @@
               "src/styles.css",
               "src/app/share/theme.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "moment",
+              "moment-duration-format"
+            ]
           },
           "configurations": {
             "production": {
