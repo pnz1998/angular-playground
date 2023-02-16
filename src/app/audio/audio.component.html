@@ -1,6 +1,6 @@
 <div class="audio">
-  <mat-selection-list [multiple]="false">
-    <mat-list-option id="list-option" *ngFor="let music of musics" [value]="music" (click)="selectionChange(music)">
+  <mat-selection-list [multiple]="false" (selectionChange)="selectionChange($event)">
+    <mat-list-option id="list-option" *ngFor="let music of musics" [value]="music">
       {{ music.name }}
     </mat-list-option>
   </mat-selection-list>
