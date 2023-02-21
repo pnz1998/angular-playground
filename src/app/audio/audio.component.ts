@@ -3,6 +3,7 @@ import moment from 'moment';
 import momentDurationFormatSetup from "moment-duration-format";
 import { Music } from '../core/models/musicModels';
 import { MusicService } from '../core/services/music.service';
+import { interval } from 'rxjs';
 momentDurationFormatSetup(moment);
 
 @Component({
@@ -15,6 +16,10 @@ export class AudioComponent implements OnInit {
   musicCurrentTime = '00:00';
   musicDuration = '00:00';
   musics: Music[] = [];
+  currentTime$ = interval(1000);
+  minValue = 0
+  maxValue = 0
+  currentValue = 0
 
   constructor(
     private musicService: MusicService
@@ -25,7 +30,12 @@ export class AudioComponent implements OnInit {
   }
 
   play() {
-    this.musicDuration = moment.duration(this.currentPlay.duration, "seconds").format("mm:ss");
+    this.currentPlay.play();
+    console.log(this.maxValue)
+    let subscription = this.currentTime$.subscribe(() => {
+      this.currentValue += 1;
+      this.musicCurrentTime = moment.duration(this.currentPlay.currentTime, "seconds").format("mm:ss", { trim: false });
+    });
   };
 
   pre() { };
@@ -34,6 +44,7 @@ export class AudioComponent implements OnInit {
 
   selectionChange($event: any) {
     this.currentPlay = $event.option.value.audio;
+    this.maxValue = $event.option.value.audio.duration;
     this.musicDuration = moment.duration($event.option.value.audio.duration, "seconds").format("mm:ss");
   };
 }
