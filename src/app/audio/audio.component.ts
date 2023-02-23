@@ -26,7 +26,11 @@ export class AudioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.musics = this.musicService.musics
+  }
+
+  getMusics() {
+    this.musicService.getMusics()
+      .subscribe(musics => this.musics = musics);
   }
 
   play() {
